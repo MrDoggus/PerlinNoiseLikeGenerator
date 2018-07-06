@@ -1,0 +1,16 @@
+The problem with the '^' character. (used Math.pow())
+Problem with the lines going striaght up/down (restarted)
+Problem with the noise function returning NaN (Had to set the array to 0 before applying math to it.)
+Relized that what I was doing was a perlin-like function, and was not perlin noise (disappointed a little)
+Problem with not knowing how I was going to scale and do octaves with the noise function I created (got stuck)
+Figured out something called a class in javascript. (Restarted again to put it in a Class.)
+The problem with the undefined array. (the way the varables worked.)
+The accidental problem that I fixed with the above (string to int.)
+The noise not displaying on the html canvas (I was tired when I was doing this, so I made a whole bunch of mistakes while trying to fix them and it was a mess.)
+The noise would display, but there would be gaps between the dots (If the abs of the slope is greater than 1, draw a line between the points)
+Noise made up of just line that are boring. (A math function to make a curve like thing makeing it so it is not just made of boring lines)
+Create the thing for two dimentions...
+Values returning NaN again (I forgot that it was a two dimentional array, not a one dimentonal array)
+Values returning NaN for a differant reason again (Math.min and Math.max only works for one dimentonal arrays)
+The 2D array result is not smooth...
+    NaN

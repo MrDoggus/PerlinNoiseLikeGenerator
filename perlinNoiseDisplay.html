@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src = "HtmlDisplay.js" type = "text/javascript"></script> 
+        <script src = "NoiseClass.js" type = "text/javascript"></script>
+        <script src = "JavaScriptHelp.js" type = "text/javascript"></script>
+        
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        
+        <link rel = "stylesheet" href="Style.css">
+        
+        <script type="application/javascript">
+            
+            
+            function OneDStill () {
+                
+                var ctx = Start();
+                ClearCanvas(0, 256, 0, 256);
+                
+                ctx.fillStyle = '#FFFFFF';
+                ctx.fillRect(0, 0, 256, 256);
+                
+                var noise = new OneD(parseInt(document.getElementById("Size").value), parseInt(document.getElementById("Octaves").value));
+                var perlin = noise.gen();
+                //var test = noise.noiseOctaves();
+                
+                var lastVal = 0;
+                var result;
+                
+                //var TlastVal = 0;
+                //var Tresult;
+                
+                ctx.fillStyle = '#4488EE';
+                
+                for (var x = 0; x < perlin.length; x++) {
+
+                    for (var y = Math.round(x * (256 / perlin.length)); y < Math.round((x + 1) * (256 / perlin.length)); y++) {
+                        
+                        result = Animate(Animate(Percent(Math.round(x * (256 / perlin.length)), Math.round((x + 1) * (256 / perlin.length)), y), perlin[x], perlin[(x + 1) % perlin.length]), 0, 256)
+                        
+                        DrawPixel(y, result);
+                        
+                        if (Math.abs(lastVal - result) > 1) {
+                            
+                            drawLine(y - 1, lastVal, y, result);
+                        }
+                        
+                        lastVal = result;
+                        
+                        
+                    }
+                }
+            }
+            
+            function TwoDStill () {
+                
+                var ctx = Start();
+                ClearCanvas(0, 256, 0, 256);
+                
+                ctx.fillStyle = '#FFFFFF';
+                ctx.fillRect(0, 0, 256, 256);
+                
+                var noise = new TwoD(parseInt(document.getElementById("Size").value), parseInt(document.getElementById("Octaves").value));
+                var perlin = noise.gen();
+                
+                var color = 0; 
+                for (var x = 0; x < perlin.length; x++) {
+                    
+                    for (var y = 0; y < perlin.length; y++) {
+                    
+                        for (var yx = Math.round(x * (256 / perlin.length)); yx < Math.round((x + 1) * (256 / perlin.length)); yx++) {
+
+                            for (var yy = Math.round(y * (256 / perlin.length)); yy < Math.round((y + 1) * (256 / perlin.length)); yy++) {
+
+                                color = perlin[x][y] * 255;
+                                ctx.fillStyle = 'rgb(' + color/1 + ', ' + color/1 + ', ' + color/1 + ')';
+                                DrawPixel(yx, yy);
+                            }
+                        }
+                    }
+                }
+            }
+            
+            function draw () {
+                
+                if (document.getElementById("Size").value < document.getElementById("Octaves").value) {
+                    
+                    window.alert("Make sure that the Array size is bigger than the Octaves");
+                }
+                
+                if (document.getElementById("NoiseType").value === "OneDNoise") {
+                    
+                    if (document.getElementById("Size").value == "" || document.getElementById("Octaves").value == "") {
+                        
+                        window.alert("There seems to be an error... Make sure you have inputed a value into both of the text boxes labeled under \"Perlin parameters\"");
+                    }
+                    else {
+                        
+                        OneDStill();
+                    }
+                }
+                else if (document.getElementById("NoiseType").value === "TwoDNoise") {
+                    
+                    if (document.getElementById("Size").value == "" || document.getElementById("Octaves").value == "") {
+                        
+                        window.alert("There seems to be an error... Make sure you have inputed a value into both of the text boxes labeled under \"Perlin parameters\"");
+                    }
+                    else {
+                        
+                        TwoDStill();
+                    }
+                }
+                else {
+                    
+                    window.alert("There seems to be an error... Make sure that you have choosen the dimensions of the perlin noise");
+                }
+            }
+            
+            function Test ()
+            {
+                ClearCanvas (0, 255, 0, 255);
+                console.log("cleared canvas");
+            }
+            
+        </script>
+    </head>
+<body>
+    
+    <div class="inputCont">
+        
+        <div class="canvasHolder">
+        
+            <canvas class="canvasStyle" id="canvas" width="257" height="257"></canvas>
+        
+        </div>
+        
+        <div class="headerHolder">
+        
+            <p class="pageHeader">Perlin-like Noise Generator: </p>
+            
+            <p class="pageHeader" style="font-size: 14px;">Introduction: </p>
+            
+            <p class="details">This is a perlin-like generator inspired by <a href="https://www.youtube.com/channel/UC-yuWVUplUJZvieEligKBkA">javidx9</a> and his youtube video, <a href="https://www.youtube.com/watch?v=6-0UaeJBumA">Programming Perlin-like Noise (C++)</a>. When I saw this video, I was filled with joy since I finnaly figured out how to make a version of perlin noise after months of searching. I decided to make this my AP computer science project so I would be motivated and forced to finnish this even if I lost interest. I did not finnish everything I would of liked to have finnished, but I am still very proud.</p>
+            
+            <p></p>
+            
+            <p class="pageHeader" style="font-size: 14px;">Instructions: </p>
+            
+            <p class="details">To generate the noise, the dimensions, array size, and octaves all need to be filled out in order to generate the noise. The dimension parameter is self-explanatory, but the other two is not. The array size parameter generates the size of the array from two raised to the power of two. The Octaves parameter indicates the detail of the output.</p>
+            
+        
+        </div>
+    
+    </div>
+    
+    <p> </p>
+    
+    <div class="inputCont">
+    
+        <div class="input">
+            <p class="pageHeader">Noise Type: </p>
+            
+            <p class="details">Dimensions</p>
+            <select id="NoiseType">
+                <option selected="true" disabled="disabled" value="Default">Choose the number of dimensions</option>
+                <option value="OneDNoise">1D perlin noise</option>
+                <option value="TwoDNoise">2D perlin noise</option>
+            </select>
+            
+            <p class="details">Generate Noise</p>
+            <button onclick="draw()">Click Me</button>
+               
+        </div>
+        
+        <div class="input">
+            <p class="pageHeader">Perlin parameters: </p>
+            
+            <p class="details">Array Size</p>
+            <input type="text" id="Size">
+            
+            <p class="details">Octaves</p>
+            <input type="text" id="Octaves">
+            
+        </div>
+    
+    </div>
+
+    <p></p>
+    
+</body>
+</html>

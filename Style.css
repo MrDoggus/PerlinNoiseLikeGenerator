@@ -1,0 +1,116 @@
+.inputCont
+{
+    width: 1280px;
+    overflow: hidden;
+}
+
+.input
+{
+    width: 574px;
+    float: left;
+
+    border: 2px solid;
+    margin-right: 0px;
+    margin-left: 16px;
+    
+    padding: 8px;
+    padding-right: 4px;
+    
+    border-radius: 2px;
+    border: 1px solid;
+    border-color: dimgray;
+}
+
+.canvasHolder
+{
+    width: 258px;
+    float: left;
+    
+    margin: 8px;
+    margin-left: 16px;
+}
+
+.canvasStyle 
+{
+    display: block;
+    
+    padding: 2px;
+    
+    border-radius: 2px;
+    border: 1px solid;
+    border-color: dimgray;
+}
+
+.headerHolder 
+{    
+    float: left;
+    width: 900px;
+    height: 241px;
+    
+    margin: 8px;
+    
+    border-radius: 2px;
+    border: 1px solid;
+    border-color: dimgray;
+    
+    padding: 10px;
+}
+
+.pageHeader
+{
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    border-width: 0px;
+    margin: 10px;
+    margin-top: 0px;
+    margin-left: 0px;
+    padding: 0px;
+}
+
+.details
+{
+    color: dimgrey;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    margin: 10px;
+    margin-left: 0px;
+    text-indent: 32px;
+    line-height: 20px;
+}
+
+
+
+html 
+{
+    overflow: hidden;
+}
+
+input[type=text]
+{
+    border: none;
+    border-radius: 2px;
+    background-color: #E0E8F0;
+    width: 200px;
+    height: 20px;
+}
+
+select
+{
+    padding: 4px;
+    border: none;
+    border-radius: 2px;
+    background-color: #E0E8F0;
+    margin: 2px;
+    width: 200px;
+    height: 20px;
+}
+
+button
+{
+    border: none;
+    border-radius: 2px;
+    background-color: #E0E8F0;
+    margin-bottom: 0px;
+    width: 200px;
+    height: 20px;
+}
